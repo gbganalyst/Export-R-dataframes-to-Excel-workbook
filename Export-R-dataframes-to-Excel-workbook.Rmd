@@ -1,0 +1,88 @@
+---
+title: "Export multiple dataframe to Excel workbook"
+subtitle: "with openxlsx::write.xlsx"
+author: "[Ogundepo Ezekiel Adebayo] (`https:bit.ly/gbganalyst`)"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+  html_document:
+    df_print: paged
+    theme: simplex
+    highlight: espresso
+    toc: true
+    toc_float: true
+    code_download: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+`openxlsx` package makes it easier to export multiple tables in `R` to `Excel` workbook with each Excel worksheet corresponds to each table or dataframe in R.
+
+
+# Package
+
+```{r package, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(openxlsx)
+library(readxl)
+
+```
+
+# Data to export
+
+Let us load `airquality`, `mtcars` and `iris` data as an example of data to export to a different `Excel` worksheet.
+
+```{r dataset}
+dataframe1 <- datasets::airquality
+dataframe1 %>% head()
+
+dataframe2 <- datasets::mtcars
+dataframe2 %>% head()
+
+
+dataframe3 <- datasets::iris
+dataframe3 %>% head()
+
+```
+
+Now that our tables are already in `R`, we need to name the sheets to export to Excel workbook. Therefore, we name it as follows:
+
+* sheet1- airquality
+* sheet2- mtcars
+* sheet3- iris
+
+```{r Export excel, message=FALSE, warning= FALSE}
+list_of_datasets <- list("airquality" = dataframe1, "mtcars" = dataframe2, "iris" = dataframe3)
+
+write.xlsx(list_of_datasets, "Excel workbook.xlsx")
+```
+
+We can then look for `Excel workbook.xlsx` file in the working directory.
+
+# Follow up
+
+We can use Microsoft Excel to open **Excel workbook.xlsx** file in the working directory but we deliberately use R to see the worksheets with the help of `readxl::excel_sheets()` function.
+
+```{r excel worksheets}
+excel_sheets("Excel workbook.xlsx")
+```
+
+In order see what each excel worksheet contains, we use `purrr::map()` function 
+
+```{r}
+
+path <- "Excel workbook.xlsx"
+
+path %>%
+        excel_sheets()%>%
+        set_names()%>%
+       map(read_excel,
+           path=path)
+        
+```
+
+
+If you like this writeup, you can also follow me on [Twitter](https://www.twitter.com/gbganalyst){target="_blank"} and [Linkedin](https://www.linkedin.com/in/ezekiel-ogundepo/){target="_blank"} for more update in `R` and `Python` for datascience.
