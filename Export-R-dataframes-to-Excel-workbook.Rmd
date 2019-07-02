@@ -1,7 +1,9 @@
 ---
-title: "Export multiple dataframe to Excel workbook"
-subtitle: "with openxlsx::write.xlsx"
-author: "[Ogundepo Ezekiel Adebayo] (`https:bit.ly/gbganalyst`)"
+title: "Export multiple data frames to Excel workbook"
+subtitle: "with openxlsx::write.xlsx() `R` function"
+author: |
+  | [Ogundepo Ezekiel Adebayo](https://bit.ly/gbganalyst)
+  | [I'm on Twitter](https://twitter.com/gbganalyst)
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
@@ -19,7 +21,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-`openxlsx` package makes it easier to export multiple tables in `R` to `Excel` workbook with each Excel worksheet corresponds to each table or dataframe in R.
+`openxlsx` package makes it easier to export multiple tables in `R` to `Excel` workbook with each Excel worksheet corresponds to a data frame in R.
 
 
 # Package
@@ -33,7 +35,7 @@ library(readxl)
 
 # Data to export
 
-Let us load `airquality`, `mtcars` and `iris` data as an example of data to export to a different `Excel` worksheet.
+For example, we want to export `airquality`, `mtcars`, `iris`, and `diamonds` dataset to a different Excel worksheet.
 
 ```{r dataset}
 dataframe1 <- datasets::airquality
@@ -46,21 +48,24 @@ dataframe2 %>% head()
 dataframe3 <- datasets::iris
 dataframe3 %>% head()
 
+dataframe4 <- ggplot2::diamonds
+dataframe4 %>% head()
 ```
 
-Now that our tables are already in `R`, we need to name the sheets to export to Excel workbook. Therefore, we name it as follows:
+Now that we have our data frames in R, we shall name the Excel sheets according to the name of the data frames in R.
 
 * sheet1- airquality
 * sheet2- mtcars
 * sheet3- iris
+* sheet4- diamonds
 
 ```{r Export excel, message=FALSE, warning= FALSE}
-list_of_datasets <- list("airquality" = dataframe1, "mtcars" = dataframe2, "iris" = dataframe3)
+list_of_datasets <- list("airquality" = dataframe1, "mtcars" = dataframe2, "iris" = dataframe3, "diamonds" = dataframe4)
 
 write.xlsx(list_of_datasets, "Excel workbook.xlsx")
 ```
 
-We can then look for `Excel workbook.xlsx` file in the working directory.
+We can now look for `Excel workbook.xlsx` file in the working directory.
 
 # Follow up
 
