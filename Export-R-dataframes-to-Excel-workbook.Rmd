@@ -1,5 +1,5 @@
 ---
-title: "Export multiple data frames to Excel workbook"
+title: "Export multiple dataframes to Excel workbook"
 subtitle: "with openxlsx::write.xlsx() `R` function"
 author: |
   | [Ogundepo Ezekiel Adebayo](https://bit.ly/gbganalyst)
@@ -18,7 +18,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, tidy = "styler")
 ```
 
 `openxlsx` package makes it easier to export multiple tables in `R` to `Excel` workbook with each Excel worksheet corresponds to a data frame in R.
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Package
 
-```{r package, warning=FALSE, message=FALSE}
+```{r package, warning=FALSE, message=FALSE, echo=TRUE}
 library(tidyverse)
 library(openxlsx)
 library(readxl)
@@ -37,7 +37,7 @@ library(readxl)
 
 For example, we want to export `airquality`, `mtcars`, `iris`, and `diamonds` dataset to a different Excel worksheet.
 
-```{r dataset}
+```{r dataset, echo = TRUE}
 dataframe1 <- datasets::airquality
 dataframe1 %>% head()
 
@@ -52,15 +52,16 @@ dataframe4 <- ggplot2::diamonds
 dataframe4 %>% head()
 ```
 
-Now that we have our data frames in R, we shall name the Excel sheets according to the name of the data frames in R.
+Now that we have our dataframes in R, we shall name the Excel sheets according to the name of the dataframes in R.
 
 * sheet1- airquality
 * sheet2- mtcars
 * sheet3- iris
 * sheet4- diamonds
 
-```{r Export excel, message=FALSE, warning= FALSE}
-list_of_datasets <- list("airquality" = dataframe1, "mtcars" = dataframe2, "iris" = dataframe3, "diamonds" = dataframe4)
+```{r Export excel, message = FALSE, warning = FALSE, echo = TRUE}
+list_of_datasets <- 
+  list("airquality" = dataframe1, "mtcars" = dataframe2, "iris" = dataframe3, "diamonds" = dataframe4)
 
 write.xlsx(list_of_datasets, "Excel workbook.xlsx")
 ```
@@ -71,21 +72,20 @@ We can now look for `Excel workbook.xlsx` file in the working directory.
 
 We can use Microsoft Excel to open **Excel workbook.xlsx** file in the working directory but we deliberately use R to see the worksheets with the help of `readxl::excel_sheets()` function.
 
-```{r excel worksheets}
+```{r excel worksheets, echo = TRUE}
 excel_sheets("Excel workbook.xlsx")
 ```
 
-In order see what each excel worksheet contains, we use `purrr::map()` function 
+In order to see what each excel worksheet contains, we use `purrr::map()` function 
 
-```{r}
+```{r, echo = TRUE}
 
 path <- "Excel workbook.xlsx"
 
 path %>%
-        excel_sheets()%>%
-        set_names()%>%
-       map(read_excel,
-           path=path)
+        excel_sheets() %>%
+        set_names() %>%
+       map(read_excel, path=path)
         
 ```
 
