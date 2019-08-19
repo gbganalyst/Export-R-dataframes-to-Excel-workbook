@@ -1,6 +1,6 @@
 ---
-title: "Export multiple dataframes to Excel workbook"
-subtitle: "with openxlsx::write.xlsx() `R` function"
+title: "Export multiple dataframes in R to MS-Excel workbook"
+subtitle: "with openxlsx::write.xlsx() function"
 author: |
   | [Ogundepo Ezekiel Adebayo](https://bit.ly/gbganalyst)
   | [I'm on Twitter](https://twitter.com/gbganalyst)
@@ -18,18 +18,36 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, tidy = "styler")
+knitr::opts_chunk$set(echo = TRUE, tidy = "styler")
 ```
 
-`openxlsx` package makes it easier to export multiple tables in `R` to `Excel` workbook with each Excel worksheet corresponds to a data frame in R.
+# Instructions
 
+This program is written in R programming language version 3.6.1. In addition to base R, the following R packages were used in this tutorial:
+
+- package "openxlsx" version 4.1.0.1
+- package "readxl" version 1.3.1 
+- package "magrittr" version 1.5
+- package "purrr" version 0.3.2
+- package "ggplot2" version 3.2.1
+
+This program will download from the internet and install the latest version of the above packages If they are not installed in your R environment. It is necessary to have internet connection to download these packages. 
+
+# Introduction
+
+`openxlsx` package makes it easier to export multiple dataframes in `R` to `Excel` workbook with each dataframe in R corresponds to a worksheet in Excel.
 
 # Package
 
-```{r package, warning=FALSE, message=FALSE, echo=TRUE}
-library(tidyverse)
-library(openxlsx)
-library(readxl)
+```{r package, warning=FALSE, message=FALSE}
+
+packages <- c("openxlsx", "readxl", "magrittr", "purrr", "ggplot2")
+
+if (!require(install.load)) {
+  install.packages("install.load")
+}
+
+install.load::install_load(packages)
 
 ```
 
@@ -37,7 +55,7 @@ library(readxl)
 
 For example, we want to export `airquality`, `mtcars`, `iris`, and `diamonds` dataset to a different Excel worksheet.
 
-```{r dataset, echo = TRUE}
+```{r dataset}
 dataframe1 <- datasets::airquality
 dataframe1 %>% head()
 
@@ -59,7 +77,7 @@ Now that we have our dataframes in R, we shall name the Excel sheets according t
 * sheet3- iris
 * sheet4- diamonds
 
-```{r Export excel, message = FALSE, warning = FALSE, echo = TRUE}
+```{r Export excel, message = FALSE, warning = FALSE}
 list_of_datasets <- 
   list("airquality" = dataframe1, "mtcars" = dataframe2, "iris" = dataframe3, "diamonds" = dataframe4)
 
@@ -70,15 +88,15 @@ We can now look for `Excel workbook.xlsx` file in the working directory.
 
 # Follow up
 
-We can use Microsoft Excel to open **Excel workbook.xlsx** file in the working directory but we deliberately use R to see the worksheets with the help of `readxl::excel_sheets()` function.
+We can use Microsoft Excel to open **Excel workbook.xlsx** file in the working directory directly but we chose to use R to see the worksheets with the help of `readxl::excel_sheets()` function.
 
-```{r excel worksheets, echo = TRUE}
+```{r excel worksheets}
 excel_sheets("Excel workbook.xlsx")
 ```
 
 In order to see what each excel worksheet contains, we use `purrr::map()` function 
 
-```{r, echo = TRUE}
+```{r Recheck}
 
 path <- "Excel workbook.xlsx"
 
@@ -90,4 +108,4 @@ path %>%
 ```
 
 ---
-If you like this writeup, you can also follow me on [Twitter](https://www.twitter.com/gbganalyst){target="_blank"} and [Linkedin](https://www.linkedin.com/in/ezekiel-ogundepo/){target="_blank"} for more updates in `R` and `Python` for datascience.
+The Github repository can be found [here](https://github.com/gbganalyst/Export-R-dataframes-to-Excel-workbook) and if you like this write up, you can also follow me on [Twitter](https://www.twitter.com/gbganalyst){target="_blank"} and [Linkedin](https://www.linkedin.com/in/ezekiel-ogundepo/){target="_blank"} for more updates in `R` and `Python` for datascience.
