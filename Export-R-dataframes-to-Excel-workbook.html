@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
-<meta name="date" content="2019-08-19" />
+<meta name="date" content="2020-01-07" />
 
 <title>Export multiple dataframes in R to MS-Excel workbook</title>
 
@@ -1300,7 +1299,7 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show)
+    if (show || $(this)[0].classList.contains('fold-show'))
       div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
@@ -2685,6 +2684,15 @@ code span.va { } /* Variable */
 code span.vs { color: #049b0a; } /* VerbatimString */
 code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
 
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -2759,7 +2767,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -2821,6 +2828,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2852,6 +2860,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -2923,6 +2937,9 @@ div.tocify {
 <div class="btn-group pull-right">
 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
 <li><a id="rmd-download-source" href="#">Download Rmd</a></li>
 </ul>
 </div>
@@ -2933,7 +2950,7 @@ div.tocify {
 <h3 class="subtitle">with openxlsx::write.xlsx() function</h3>
 <h4 class="author"><div class="line-block"><a href="https://bit.ly/gbganalyst">Ogundepo Ezekiel Adebayo</a><br />
 <a href="https://twitter.com/gbganalyst">I’m on Twitter</a></div></h4>
-<h4 class="date">August 19, 2019</h4>
+<h4 class="date">January 07, 2020</h4>
 
 </div>
 
@@ -3034,7 +3051,7 @@ div.tocify {
 ##  8    19      99  13.8    59     5     8
 ##  9     8      19  20.1    61     5     9
 ## 10    NA     194   8.6    69     5    10
-## # ... with 143 more rows
+## # … with 143 more rows
 ## 
 ## $mtcars
 ## # A tibble: 32 x 11
@@ -3050,7 +3067,7 @@ div.tocify {
 ##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
 ##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 ## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # ... with 22 more rows
+## # … with 22 more rows
 ## 
 ## $iris
 ## # A tibble: 150 x 5
@@ -3066,7 +3083,7 @@ div.tocify {
 ##  8          5           3.4          1.5         0.2 setosa 
 ##  9          4.4         2.9          1.4         0.2 setosa 
 ## 10          4.9         3.1          1.5         0.1 setosa 
-## # ... with 140 more rows
+## # … with 140 more rows
 ## 
 ## $diamonds
 ## # A tibble: 53,940 x 10
@@ -3082,12 +3099,12 @@ div.tocify {
 ##  8 0.26  Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
 ##  9 0.22  Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
 ## 10 0.23  Very Good H     VS1      59.4    61   338  4     4.05  2.39
-## # ... with 53,930 more rows</code></pre>
+## # … with 53,930 more rows</code></pre>
 <hr />
-<p>The Github repository can be found <a href="https://github.com/gbganalyst/Export-R-dataframes-to-Excel-workbook">here</a> and if you like this write up, you can also follow me on <a href="https://www.twitter.com/gbganalyst" target="_blank">Twitter</a> and <a href="https://www.linkedin.com/in/ezekiel-ogundepo/" target="_blank">Linkedin</a> for more updates in <code>R</code> and <code>Python</code> for datascience.</p>
+<p>I hope you enjoy this article. Its Github repository can be found <a href="https://github.com/gbganalyst/Export-R-dataframes-to-Excel-workbook">here</a> and if you like this write up, can also follow me on <a href="https://www.twitter.com/gbganalyst" target="_blank">Twitter</a> and <a href="https://www.linkedin.com/in/ezekiel-ogundepo/" target="_blank">Linkedin</a> for more updates in <code>R</code>, <code>Python</code>, and <code>Excel</code> for data science.</p>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4cG9ydCBtdWx0aXBsZSBkYXRhZnJhbWVzIGluIFIgdG8gTVMtRXhjZWwgd29ya2Jvb2siDQpzdWJ0aXRsZTogIndpdGggb3Blbnhsc3g6OndyaXRlLnhsc3goKSBmdW5jdGlvbiINCmF1dGhvcjogfA0KICB8IFtPZ3VuZGVwbyBFemVraWVsIEFkZWJheW9dKGh0dHBzOi8vYml0Lmx5L2diZ2FuYWx5c3QpDQogIHwgW0knbSBvbiBUd2l0dGVyXShodHRwczovL3R3aXR0ZXIuY29tL2diZ2FuYWx5c3QpDQpkYXRlOiAiYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiAlZCwgJVknKWAiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KICAgIHRoZW1lOiBzaW1wbGV4DQogICAgaGlnaGxpZ2h0OiBlc3ByZXNzbw0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19mbG9hdDogdHJ1ZQ0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCmVkaXRvcl9vcHRpb25zOiANCiAgY2h1bmtfb3V0cHV0X3R5cGU6IGNvbnNvbGUNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSwgdGlkeSA9ICJzdHlsZXIiKQ0KYGBgDQoNCiMgSW5zdHJ1Y3Rpb25zDQoNClRoaXMgcHJvZ3JhbSBpcyB3cml0dGVuIGluIFIgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2UgdmVyc2lvbiAzLjYuMS4gSW4gYWRkaXRpb24gdG8gYmFzZSBSLCB0aGUgZm9sbG93aW5nIFIgcGFja2FnZXMgd2VyZSB1c2VkIGluIHRoaXMgdHV0b3JpYWw6DQoNCi0gcGFja2FnZSAib3Blbnhsc3giIHZlcnNpb24gNC4xLjAuMQ0KLSBwYWNrYWdlICJyZWFkeGwiIHZlcnNpb24gMS4zLjEgDQotIHBhY2thZ2UgIm1hZ3JpdHRyIiB2ZXJzaW9uIDEuNQ0KLSBwYWNrYWdlICJwdXJyciIgdmVyc2lvbiAwLjMuMg0KLSBwYWNrYWdlICJnZ3Bsb3QyIiB2ZXJzaW9uIDMuMi4xDQoNClRoaXMgcHJvZ3JhbSB3aWxsIGRvd25sb2FkIGZyb20gdGhlIGludGVybmV0IGFuZCBpbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiB0aGUgYWJvdmUgcGFja2FnZXMgSWYgdGhleSBhcmUgbm90IGluc3RhbGxlZCBpbiB5b3VyIFIgZW52aXJvbm1lbnQuIEl0IGlzIG5lY2Vzc2FyeSB0byBoYXZlIGludGVybmV0IGNvbm5lY3Rpb24gdG8gZG93bmxvYWQgdGhlc2UgcGFja2FnZXMuIA0KDQojIEludHJvZHVjdGlvbg0KDQpgb3Blbnhsc3hgIHBhY2thZ2UgbWFrZXMgaXQgZWFzaWVyIHRvIGV4cG9ydCBtdWx0aXBsZSBkYXRhZnJhbWVzIGluIGBSYCB0byBgRXhjZWxgIHdvcmtib29rIHdpdGggZWFjaCBkYXRhZnJhbWUgaW4gUiBjb3JyZXNwb25kcyB0byBhIHdvcmtzaGVldCBpbiBFeGNlbC4NCg0KIyBQYWNrYWdlDQoNCmBgYHtyIHBhY2thZ2UsIHdhcm5pbmc9RkFMU0UsIG1lc3NhZ2U9RkFMU0V9DQoNCnBhY2thZ2VzIDwtIGMoIm9wZW54bHN4IiwgInJlYWR4bCIsICJtYWdyaXR0ciIsICJwdXJyciIsICJnZ3Bsb3QyIikNCg0KaWYgKCFyZXF1aXJlKGluc3RhbGwubG9hZCkpIHsNCiAgaW5zdGFsbC5wYWNrYWdlcygiaW5zdGFsbC5sb2FkIikNCn0NCg0KaW5zdGFsbC5sb2FkOjppbnN0YWxsX2xvYWQocGFja2FnZXMpDQoNCmBgYA0KDQojIERhdGEgdG8gZXhwb3J0DQoNCkZvciBleGFtcGxlLCB3ZSB3YW50IHRvIGV4cG9ydCBgYWlycXVhbGl0eWAsIGBtdGNhcnNgLCBgaXJpc2AsIGFuZCBgZGlhbW9uZHNgIGRhdGFzZXQgdG8gYSBkaWZmZXJlbnQgRXhjZWwgd29ya3NoZWV0Lg0KDQpgYGB7ciBkYXRhc2V0fQ0KZGF0YWZyYW1lMSA8LSBkYXRhc2V0czo6YWlycXVhbGl0eQ0KZGF0YWZyYW1lMSAlPiUgaGVhZCgpDQoNCmRhdGFmcmFtZTIgPC0gZGF0YXNldHM6Om10Y2Fycw0KZGF0YWZyYW1lMiAlPiUgaGVhZCgpDQoNCg0KZGF0YWZyYW1lMyA8LSBkYXRhc2V0czo6aXJpcw0KZGF0YWZyYW1lMyAlPiUgaGVhZCgpDQoNCmRhdGFmcmFtZTQgPC0gZ2dwbG90Mjo6ZGlhbW9uZHMNCmRhdGFmcmFtZTQgJT4lIGhlYWQoKQ0KYGBgDQoNCk5vdyB0aGF0IHdlIGhhdmUgb3VyIGRhdGFmcmFtZXMgaW4gUiwgd2Ugc2hhbGwgbmFtZSB0aGUgRXhjZWwgc2hlZXRzIGFjY29yZGluZyB0byB0aGUgbmFtZSBvZiB0aGUgZGF0YWZyYW1lcyBpbiBSLg0KDQoqIHNoZWV0MS0gYWlycXVhbGl0eQ0KKiBzaGVldDItIG10Y2Fycw0KKiBzaGVldDMtIGlyaXMNCiogc2hlZXQ0LSBkaWFtb25kcw0KDQpgYGB7ciBFeHBvcnQgZXhjZWwsIG1lc3NhZ2UgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQ0KbGlzdF9vZl9kYXRhc2V0cyA8LSANCiAgbGlzdCgiYWlycXVhbGl0eSIgPSBkYXRhZnJhbWUxLCAibXRjYXJzIiA9IGRhdGFmcmFtZTIsICJpcmlzIiA9IGRhdGFmcmFtZTMsICJkaWFtb25kcyIgPSBkYXRhZnJhbWU0KQ0KDQp3cml0ZS54bHN4KGxpc3Rfb2ZfZGF0YXNldHMsICJFeGNlbCB3b3JrYm9vay54bHN4IikNCmBgYA0KDQpXZSBjYW4gbm93IGxvb2sgZm9yIGBFeGNlbCB3b3JrYm9vay54bHN4YCBmaWxlIGluIHRoZSB3b3JraW5nIGRpcmVjdG9yeS4NCg0KIyBGb2xsb3cgdXANCg0KV2UgY2FuIHVzZSBNaWNyb3NvZnQgRXhjZWwgdG8gb3BlbiAqKkV4Y2VsIHdvcmtib29rLnhsc3gqKiBmaWxlIGluIHRoZSB3b3JraW5nIGRpcmVjdG9yeSBkaXJlY3RseSBidXQgd2UgY2hvc2UgdG8gdXNlIFIgdG8gc2VlIHRoZSB3b3Jrc2hlZXRzIHdpdGggdGhlIGhlbHAgb2YgYHJlYWR4bDo6ZXhjZWxfc2hlZXRzKClgIGZ1bmN0aW9uLg0KDQpgYGB7ciBleGNlbCB3b3Jrc2hlZXRzfQ0KZXhjZWxfc2hlZXRzKCJFeGNlbCB3b3JrYm9vay54bHN4IikNCmBgYA0KDQpJbiBvcmRlciB0byBzZWUgd2hhdCBlYWNoIGV4Y2VsIHdvcmtzaGVldCBjb250YWlucywgd2UgdXNlIGBwdXJycjo6bWFwKClgIGZ1bmN0aW9uIA0KDQpgYGB7ciBSZWNoZWNrfQ0KDQpwYXRoIDwtICJFeGNlbCB3b3JrYm9vay54bHN4Ig0KDQpwYXRoICU+JQ0KICAgICAgICBleGNlbF9zaGVldHMoKSAlPiUNCiAgICAgICAgc2V0X25hbWVzKCkgJT4lDQogICAgICAgbWFwKHJlYWRfZXhjZWwsIHBhdGg9cGF0aCkNCiAgICAgICAgDQpgYGANCg0KLS0tDQpUaGUgR2l0aHViIHJlcG9zaXRvcnkgY2FuIGJlIGZvdW5kIFtoZXJlXShodHRwczovL2dpdGh1Yi5jb20vZ2JnYW5hbHlzdC9FeHBvcnQtUi1kYXRhZnJhbWVzLXRvLUV4Y2VsLXdvcmtib29rKSBhbmQgaWYgeW91IGxpa2UgdGhpcyB3cml0ZSB1cCwgeW91IGNhbiBhbHNvIGZvbGxvdyBtZSBvbiBbVHdpdHRlcl0oaHR0cHM6Ly93d3cudHdpdHRlci5jb20vZ2JnYW5hbHlzdCl7dGFyZ2V0PSJfYmxhbmsifSBhbmQgW0xpbmtlZGluXShodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vZXpla2llbC1vZ3VuZGVwby8pe3RhcmdldD0iX2JsYW5rIn0gZm9yIG1vcmUgdXBkYXRlcyBpbiBgUmAgYW5kIGBQeXRob25gIGZvciBkYXRhc2NpZW5jZS4=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkV4cG9ydCBtdWx0aXBsZSBkYXRhZnJhbWVzIGluIFIgdG8gTVMtRXhjZWwgd29ya2Jvb2siDQpzdWJ0aXRsZTogIndpdGggb3Blbnhsc3g6OndyaXRlLnhsc3goKSBmdW5jdGlvbiINCmF1dGhvcjogfA0KICB8IFtPZ3VuZGVwbyBFemVraWVsIEFkZWJheW9dKGh0dHBzOi8vYml0Lmx5L2diZ2FuYWx5c3QpDQogIHwgW0knbSBvbiBUd2l0dGVyXShodHRwczovL3R3aXR0ZXIuY29tL2diZ2FuYWx5c3QpDQpkYXRlOiAiYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiAlZCwgJVknKWAiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50Og0KICAgIGRmX3ByaW50OiBwYWdlZA0KICAgIHRoZW1lOiBzaW1wbGV4DQogICAgaGlnaGxpZ2h0OiBlc3ByZXNzbw0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19mbG9hdDogdHJ1ZQ0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCiAgICBjb2RlX2ZvbGRpbmc6IHNob3cNCmVkaXRvcl9vcHRpb25zOiANCiAgY2h1bmtfb3V0cHV0X3R5cGU6IGNvbnNvbGUNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCg0KIyBEb2N1bWVudCBzZXR0aW5ncyBmb3IgUiBNYXJrZG93bg0KDQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUsDQogICAgICAgICAgICAgICAgICAgICAgdGlkeSA9ICJzdHlsZXIiLA0KICAgICAgICAgICAgICAgICAgICAgIG91dC53aWR0aCA9ICIxMDAlIiwNCiAgICAgICAgICAgICAgICAgICAgICBtZXNzYWdlID0gRkFMU0UsDQogICAgICAgICAgICAgICAgICAgICAgd2FybmluZyA9IEZBTFNFKQ0KYGBgDQoNCiMgSW5zdHJ1Y3Rpb25zDQoNClRoaXMgcHJvZ3JhbSBpcyB3cml0dGVuIGluIFIgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2UgdmVyc2lvbiAzLjYuMS4gSW4gYWRkaXRpb24gdG8gYmFzZSBSLCB0aGUgZm9sbG93aW5nIFIgcGFja2FnZXMgd2VyZSB1c2VkIGluIHRoaXMgdHV0b3JpYWw6DQoNCi0gcGFja2FnZSAib3Blbnhsc3giIHZlcnNpb24gNC4xLjAuMQ0KLSBwYWNrYWdlICJyZWFkeGwiIHZlcnNpb24gMS4zLjEgDQotIHBhY2thZ2UgIm1hZ3JpdHRyIiB2ZXJzaW9uIDEuNQ0KLSBwYWNrYWdlICJwdXJyciIgdmVyc2lvbiAwLjMuMg0KLSBwYWNrYWdlICJnZ3Bsb3QyIiB2ZXJzaW9uIDMuMi4xDQoNClRoaXMgcHJvZ3JhbSB3aWxsIGRvd25sb2FkIGZyb20gdGhlIGludGVybmV0IGFuZCBpbnN0YWxsIHRoZSBsYXRlc3QgdmVyc2lvbiBvZiB0aGUgYWJvdmUgcGFja2FnZXMgSWYgdGhleSBhcmUgbm90IGluc3RhbGxlZCBpbiB5b3VyIFIgZW52aXJvbm1lbnQuIEl0IGlzIG5lY2Vzc2FyeSB0byBoYXZlIGludGVybmV0IGNvbm5lY3Rpb24gdG8gZG93bmxvYWQgdGhlc2UgcGFja2FnZXMuIA0KDQojIEludHJvZHVjdGlvbg0KDQpgb3Blbnhsc3hgIHBhY2thZ2UgbWFrZXMgaXQgZWFzaWVyIHRvIGV4cG9ydCBtdWx0aXBsZSBkYXRhZnJhbWVzIGluIGBSYCB0byBgRXhjZWxgIHdvcmtib29rIHdpdGggZWFjaCBkYXRhZnJhbWUgaW4gUiBjb3JyZXNwb25kcyB0byBhIHdvcmtzaGVldCBpbiBFeGNlbC4NCg0KIyBQYWNrYWdlDQoNCmBgYHtyIHBhY2thZ2UsIHdhcm5pbmc9RkFMU0UsIG1lc3NhZ2U9RkFMU0V9DQoNCnBhY2thZ2VzIDwtIGMoIm9wZW54bHN4IiwgInJlYWR4bCIsICJtYWdyaXR0ciIsICJwdXJyciIsICJnZ3Bsb3QyIikNCg0KaWYgKCFyZXF1aXJlKGluc3RhbGwubG9hZCkpIHsNCiAgaW5zdGFsbC5wYWNrYWdlcygiaW5zdGFsbC5sb2FkIikNCn0NCg0KaW5zdGFsbC5sb2FkOjppbnN0YWxsX2xvYWQocGFja2FnZXMpDQoNCmBgYA0KDQojIERhdGEgdG8gZXhwb3J0DQoNCkZvciBleGFtcGxlLCB3ZSB3YW50IHRvIGV4cG9ydCBgYWlycXVhbGl0eWAsIGBtdGNhcnNgLCBgaXJpc2AsIGFuZCBgZGlhbW9uZHNgIGRhdGFzZXQgdG8gYSBkaWZmZXJlbnQgRXhjZWwgd29ya3NoZWV0Lg0KDQpgYGB7ciBkYXRhc2V0fQ0KZGF0YWZyYW1lMSA8LSBkYXRhc2V0czo6YWlycXVhbGl0eQ0KZGF0YWZyYW1lMSAlPiUgaGVhZCgpDQoNCmRhdGFmcmFtZTIgPC0gZGF0YXNldHM6Om10Y2Fycw0KZGF0YWZyYW1lMiAlPiUgaGVhZCgpDQoNCg0KZGF0YWZyYW1lMyA8LSBkYXRhc2V0czo6aXJpcw0KZGF0YWZyYW1lMyAlPiUgaGVhZCgpDQoNCmRhdGFmcmFtZTQgPC0gZ2dwbG90Mjo6ZGlhbW9uZHMNCmRhdGFmcmFtZTQgJT4lIGhlYWQoKQ0KYGBgDQoNCk5vdyB0aGF0IHdlIGhhdmUgb3VyIGRhdGFmcmFtZXMgaW4gUiwgd2Ugc2hhbGwgbmFtZSB0aGUgRXhjZWwgc2hlZXRzIGFjY29yZGluZyB0byB0aGUgbmFtZSBvZiB0aGUgZGF0YWZyYW1lcyBpbiBSLg0KDQoqIHNoZWV0MS0gYWlycXVhbGl0eQ0KKiBzaGVldDItIG10Y2Fycw0KKiBzaGVldDMtIGlyaXMNCiogc2hlZXQ0LSBkaWFtb25kcw0KDQpgYGB7ciBFeHBvcnQgZXhjZWwsIG1lc3NhZ2UgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQ0KbGlzdF9vZl9kYXRhc2V0cyA8LSANCiAgbGlzdCgiYWlycXVhbGl0eSIgPSBkYXRhZnJhbWUxLCAibXRjYXJzIiA9IGRhdGFmcmFtZTIsICJpcmlzIiA9IGRhdGFmcmFtZTMsICJkaWFtb25kcyIgPSBkYXRhZnJhbWU0KQ0KDQp3cml0ZS54bHN4KGxpc3Rfb2ZfZGF0YXNldHMsICJFeGNlbCB3b3JrYm9vay54bHN4IikNCmBgYA0KDQpXZSBjYW4gbm93IGxvb2sgZm9yIGBFeGNlbCB3b3JrYm9vay54bHN4YCBmaWxlIGluIHRoZSB3b3JraW5nIGRpcmVjdG9yeS4NCg0KIyBGb2xsb3cgdXANCg0KV2UgY2FuIHVzZSBNaWNyb3NvZnQgRXhjZWwgdG8gb3BlbiAqKkV4Y2VsIHdvcmtib29rLnhsc3gqKiBmaWxlIGluIHRoZSB3b3JraW5nIGRpcmVjdG9yeSBkaXJlY3RseSBidXQgd2UgY2hvc2UgdG8gdXNlIFIgdG8gc2VlIHRoZSB3b3Jrc2hlZXRzIHdpdGggdGhlIGhlbHAgb2YgYHJlYWR4bDo6ZXhjZWxfc2hlZXRzKClgIGZ1bmN0aW9uLg0KDQpgYGB7ciBleGNlbCB3b3Jrc2hlZXRzfQ0KZXhjZWxfc2hlZXRzKCJFeGNlbCB3b3JrYm9vay54bHN4IikNCmBgYA0KDQpJbiBvcmRlciB0byBzZWUgd2hhdCBlYWNoIGV4Y2VsIHdvcmtzaGVldCBjb250YWlucywgd2UgdXNlIGBwdXJycjo6bWFwKClgIGZ1bmN0aW9uIA0KDQpgYGB7ciBSZWNoZWNrfQ0KDQpwYXRoIDwtICJFeGNlbCB3b3JrYm9vay54bHN4Ig0KDQpwYXRoICU+JQ0KICAgICAgICBleGNlbF9zaGVldHMoKSAlPiUNCiAgICAgICAgc2V0X25hbWVzKCkgJT4lDQogICAgICAgbWFwKHJlYWRfZXhjZWwsIHBhdGg9cGF0aCkNCiAgICAgICAgDQpgYGANCg0KLS0tDQpJIGhvcGUgeW91IGVuam95IHRoaXMgYXJ0aWNsZS4gSXRzIEdpdGh1YiByZXBvc2l0b3J5IGNhbiBiZSBmb3VuZCBbaGVyZV0oaHR0cHM6Ly9naXRodWIuY29tL2diZ2FuYWx5c3QvRXhwb3J0LVItZGF0YWZyYW1lcy10by1FeGNlbC13b3JrYm9vaykgYW5kIGlmIHlvdSBsaWtlIHRoaXMgd3JpdGUgdXAsIGNhbiBhbHNvIGZvbGxvdyBtZSBvbiBbVHdpdHRlcl0oaHR0cHM6Ly93d3cudHdpdHRlci5jb20vZ2JnYW5hbHlzdCl7dGFyZ2V0PSJfYmxhbmsifSBhbmQgW0xpbmtlZGluXShodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vZXpla2llbC1vZ3VuZGVwby8pe3RhcmdldD0iX2JsYW5rIn0gZm9yIG1vcmUgdXBkYXRlcyBpbiBgUmAsIGBQeXRob25gLCBhbmQgYEV4Y2VsYCBmb3IgZGF0YSBzY2llbmNlLg0KDQo=</div>
 
 
 </div>
@@ -3126,6 +3143,7 @@ $(document).ready(function () {
 <script>
 $(document).ready(function () {
   window.initializeSourceEmbed("Export-R-dataframes-to-Excel-workbook.Rmd");
+  window.initializeCodeFolding("show" === "show");
 });
 </script>
 
